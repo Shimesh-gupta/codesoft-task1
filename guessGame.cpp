@@ -1,53 +1,29 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-
+#include <iostream> 
+#include <cstdlib>  
+#include <ctime>     
 using namespace std;
 
-void playGame() {
+int main() {
     srand(time(0));
     int secretNumber = rand() % 100 + 1;
     int guess;
-    int attempts = 0;
-    const int maxAttempts = 10;
-    int score = 100;
-
-    cout << "\n New Game Started! Guess the number between 1 and 100." << endl;
-    cout << "You have " << maxAttempts << " attempts. Each wrong guess deducts 10 points." << endl;
-
-    while (attempts < maxAttempts) {
-        cout << "\nAttempt " << (attempts + 1) << ": ";
+    cout << "Welcome to the Number Guessing Game" << endl;
+    cout << "I have chosen a number between 1 and 100." << endl;
+    while (true) {
+        cout << "Enter your guess: ";
         cin >> guess;
-        attempts++;
 
-        if (guess < secretNumber) {
-            cout << "Too low!";
-            score -= 10;
-        } else if (guess > secretNumber) {
-            cout << "Too high!";
-            score -= 10;
+        if (guess > secretNumber) {
+            cout << "Too high! Try again." << endl;
+        } else if (guess < secretNumber) {
+            cout << "Too low! Try again." << endl;
         } else {
-            cout << " Correct! The number was " << secretNumber << ".";
-            cout << "\n Your score: " << score << endl;
-            return;
+            cout << "Congratulations! You guessed the correct number!" << endl;
+            break; // Exit the loop since the guess is correct
         }
     }
 
-    cout << "\n You've used all attempts. The number was: " << secretNumber << endl;
-    cout << " Your score: 0" << endl;
-}
+    cout << "Thank you for playing." << endl;
 
-int main() {
-    char playAgain;
-
-    do {
-        playGame();
-
-        cout << "\nDo you want to play again? (y/n): ";
-        cin >> playAgain;
-
-    } while (playAgain == 'y' || playAgain == 'Y');
-
-    cout << "\nThanks for playing! Goodbye " << endl;
     return 0;
 }
